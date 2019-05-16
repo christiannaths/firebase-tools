@@ -59,7 +59,7 @@ interface RequestWithRawBody extends express.Request {
 
 export class FunctionsEmulator implements EmulatorInstance {
   static getHttpFunctionUrl(port: number, projectId: string, name: string, region: string): string {
-    return `http://localhost:${port}/${projectId}/${region}/${name}`;
+    return `http://localhost:${port}/${name}`;
   }
 
   static createHubServer(
@@ -101,7 +101,7 @@ export class FunctionsEmulator implements EmulatorInstance {
     const backgroundFunctionRoute = "/functions/projects/:project_id/triggers/:trigger_name";
 
     // The URL that the developer sees, this is the same URL that the legacy emulator used.
-    const httpsFunctionRoute = `/:project_id/:region/:trigger_name`;
+    const httpsFunctionRoute = `/:trigger_name`;
 
     // A trigger named "foo" needs to respond at "foo" as well as "foo/*" but not "fooBar".
     const httpsFunctionRoutes = [httpsFunctionRoute, `${httpsFunctionRoute}/*`];
